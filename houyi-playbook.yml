@@ -1,0 +1,5 @@
+---
+- hosts: sled-mcn0
+  roles:
+    - sled-mcn0
+

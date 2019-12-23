@@ -1,0 +1,65 @@
+---
+- name: "copy houyi to destination server"
+  copy:
+    src: "{{ role_path }}/files/bin/houyi"
+    dest: "/opt/houyi/bin/"
+    mode: 0755
+
+- name: "copy net_flood to destination server"
+  copy:
+    src: "{{ role_path }}/files/bin/net_flood"
+    dest: "/opt/houyi/bin/"
+    mode: 0755
+
+- name: "copy houyi_send_plug to destination server"
+  copy:
+    src: "{{ role_path }}/files/bin/houyi_send_plug.so"
+    dest: "/home/mesasoft/sapp_run/plug/business/houyi/"
+    
+- name: "copy houyi.conf to destination server"
+  copy:
+    src: "{{ role_path }}/files/etc/houyi.conf"
+    dest: "/opt/houyi/bin/houyi_etc/"
+
+- name: "copy houyi static arp.conf to destination server"
+  copy:
+    src: "{{ role_path }}/files/etc/houyi_plug_static_arp.conf"
+    dest: "/opt/houyi/bin/houyi_etc/"
+    
+- name: "copy maat tableinfo conf to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/etc/maat_tableinfo.conf"
+    dest: "/opt/houyi/bin/houyi_etc/"
+    
+- name: "copy maat test json to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/etc/maat_test.json"
+    dest: "/opt/houyi/bin/houyi_etc/"    
+    
+- name: "copy plug.inf to destination server"
+  copy:
+    src: "{{ role_path }}/files/etc/houyi.inf"
+    dest: "/home/mesasoft/sapp_run/plug/business/houyi/"
+
+- name: "copy houyi_plug.conf to destination server"
+  copy:
+    src: "{{ role_path }}/files/etc/houyi_plug.conf"
+    dest: "/home/mesasoft/sapp_run/houyi_etc/"
+    mode: 0644
+    
+- name: "copy houyi.service destination server"
+  copy:
+    src: "{{ role_path }}/files/service/houyi.service"
+    dest: "/usr/lib/systemd/system/"
+
+- name: Template the sapp conflist.inf
+  template:
+    src: "{{ role_path }}/templates/conflist.inf.j2"
+    dest: /home/mesasoft/sapp_run/plug/conflist.inf
+  tags: template
+
+- name: "enable houyi service"
+  systemd:
+    name: houyi
+    enabled: yes
+    daemon_reload: yes
