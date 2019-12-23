@@ -1,14 +1,13 @@
-houyiÄ£¿é°²×°²¿ÊğËµÃ÷:
+houyiæ¨¡å—å®‰è£…éƒ¨ç½²è¯´æ˜:
 
-1.²¿Êğ¹¤¾ß
-    houyiÄ£¿éÊ¹ÓÃansible¹¤¾ß×Ô¶¯²¿Êğ, 
-    Ïà¹ØµÄ½Å±¾ºÍÅäÖÃÎÄ¼şÒÑÉÏ´«ÖÁgit houyi-deploy¹¤³Ì:https://git.mesalab.cn/tsg/houyi-deploy
+1.éƒ¨ç½²å·¥å…·
+    houyiæ¨¡å—ä½¿ç”¨ansibleå·¥å…·è‡ªåŠ¨éƒ¨ç½², 
+    ç›¸å…³çš„è„šæœ¬å’Œé…ç½®æ–‡ä»¶å·²ä¸Šä¼ è‡³git houyi-deployå·¥ç¨‹:https://git.mesalab.cn/tsg/houyi-deploy
   
-2.²¿Êğ²½Öè  
-    2.1)gitÏÂÔØhouyi-deploy.tgz
-    2.2)½øÈëhouyi-deployÄ¿Â¼, ¸ù¾İÒª²¿ÊğµÄÊµ¼ÊÍøÂç»·¾³, Ñ¡ÔñºÏÊÊµÄhostsÎÄ¼ş,
-      
-        ÀıÈç,ÔÚĞÅÏ¢¸Û²¿ÊğTSGÉè±¸, Ö´ĞĞÒÔÏÂÃüÁî: 
-        ansible-playbook -i hosts.xxg.transparent  houyi-playbook.yml
-    2.3)ansible¹¤¾ß»á¸ù¾İÔ¤ÉèµÄplaybook×Ô¶¯²¿Êğ, ²¿ÊğÍê³Éºó, »áÉú³É²¿Êğ×´Ì¬±¨¸æ, 
-        ×´Ì¬Õı³£°üÀ¨okºÍchanged, Èç¹ûÓĞfailed¼ÆÊı, ÇëÁªÏµ¿ª·¢ÈËÔ±½â¾ö¡£
+2.éƒ¨ç½²æ­¥éª¤  
+- 2.1)gitä¸‹è½½houyi-deploy.tgz         
+-  2.2)è¿›å…¥houyi-deployç›®å½•, æ ¹æ®è¦éƒ¨ç½²çš„å®é™…ç½‘ç»œç¯å¢ƒ, é€‰æ‹©åˆé€‚çš„hostsæ–‡ä»¶,       
+            ä¾‹å¦‚,åœ¨ä¿¡æ¯æ¸¯éƒ¨ç½²TSGè®¾å¤‡, æ‰§è¡Œä»¥ä¸‹å‘½ä»¤:      
+            ansible-playbook -i hosts.xxg.transparent  houyi-playbook.yml     
+-  2.3)ansibleå·¥å…·ä¼šæ ¹æ®é¢„è®¾çš„playbookè‡ªåŠ¨éƒ¨ç½², éƒ¨ç½²å®Œæˆå, ä¼šç”Ÿæˆéƒ¨ç½²çŠ¶æ€æŠ¥å‘Š,   
+        çŠ¶æ€æ­£å¸¸åŒ…æ‹¬okå’Œchanged, å¦‚æœæœ‰failedè®¡æ•°, è¯·è”ç³»å¼€å‘äººå‘˜è§£å†³ã€‚        
