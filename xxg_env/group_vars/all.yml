@@ -1,0 +1,9 @@
+houyi_global:
+    sapp:
+        packet_io:
+            inbound_device: "eth0"
+            outbound_device: "eth1"
+    houyi:
+        redis_server_ip: "192.168.40.111"
+        redis_server_port: 27002
+        redis_index: 0

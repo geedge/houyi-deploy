@@ -1,65 +1,112 @@
 ---
-- name: "copy houyi to destination server"
-  copy:
-    src: "{{ role_path }}/files/bin/houyi"
-    dest: "/opt/houyi/bin/"
-    mode: 0755
-
-- name: "copy net_flood to destination server"
-  copy:
-    src: "{{ role_path }}/files/bin/net_flood"
-    dest: "/opt/houyi/bin/"
-    mode: 0755
-
-- name: "copy houyi_send_plug to destination server"
-  copy:
-    src: "{{ role_path }}/files/bin/houyi_send_plug.so"
-    dest: "/home/mesasoft/sapp_run/plug/business/houyi/"
-    
-- name: "copy houyi.conf to destination server"
-  copy:
-    src: "{{ role_path }}/files/etc/houyi.conf"
-    dest: "/opt/houyi/bin/houyi_etc/"
-
-- name: "copy houyi static arp.conf to destination server"
-  copy:
-    src: "{{ role_path }}/files/etc/houyi_plug_static_arp.conf"
-    dest: "/opt/houyi/bin/houyi_etc/"
-    
-- name: "copy maat tableinfo conf to destination server"
+- name: "copy houyi_rpm_file to destination server"
   synchronize:
-    src: "{{ role_path }}/files/etc/maat_tableinfo.conf"
-    dest: "/opt/houyi/bin/houyi_etc/"
-    
-- name: "copy maat test json to destination server"
+    src: "{{ role_path }}/files/rpm/{{ houyi_rpm_file }}"
+    dest: "/tmp/houyi_deploy/"
+
+- name: "copy houyi_plug_rpm_file to destination server"
   synchronize:
-    src: "{{ role_path }}/files/etc/maat_test.json"
-    dest: "/opt/houyi/bin/houyi_etc/"    
+    src: "{{ role_path }}/files/rpm/{{ houyi_plug_rpm_file }}"
+    dest: "/tmp/houyi_deploy/"
     
-- name: "copy plug.inf to destination server"
-  copy:
-    src: "{{ role_path }}/files/etc/houyi.inf"
-    dest: "/home/mesasoft/sapp_run/plug/business/houyi/"
+- name: "copy net_flood_rpm_file to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/rpm/{{ net_flood_rpm_file }}"
+    dest: "/tmp/houyi_deploy/"
 
-- name: "copy houyi_plug.conf to destination server"
-  copy:
-    src: "{{ role_path }}/files/etc/houyi_plug.conf"
-    dest: "/home/mesasoft/sapp_run/houyi_etc/"
-    mode: 0644
-    
-- name: "copy houyi.service destination server"
-  copy:
-    src: "{{ role_path }}/files/service/houyi.service"
-    dest: "/usr/lib/systemd/system/"
+- name: "copy sapp_rpm_file to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/rpm/{{ sapp_rpm_file }}"
+    dest: "/tmp/houyi_deploy/"
 
-- name: Template the sapp conflist.inf
+- name: "install sapp"
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - /tmp/houyi_deploy/{{ sapp_rpm_file }}
+
+- name: "install houyi"
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - /tmp/houyi_deploy/{{ houyi_rpm_file }}
+
+- name: "install houyi-plug"
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - /tmp/houyi_deploy/{{ houyi_plug_rpm_file }}
+
+- name: "install net_flood"
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - /tmp/houyi_deploy/{{ net_flood_rpm_file }}
+
+
+
+- name: "Template the sapp.toml"
+  template:
+    src: "{{ role_path }}/templates/sapp.toml.j2"
+    dest: /home/mesasoft/sapp_run/etc/sapp.toml
+  tags: template
+
+- name: "Template the conflist.inf"
   template:
     src: "{{ role_path }}/templates/conflist.inf.j2"
     dest: /home/mesasoft/sapp_run/plug/conflist.inf
   tags: template
+  
+- name: "Template the houyi.inf"
+  template:
+    src: "{{ role_path }}/templates/houyi.inf.j2"
+    dest: /home/mesasoft/sapp_run/plug/business/houyi/houyi.inf
+  tags: template
+  
+- name: "Template the houyi.inf"
+  template:
+    src: "{{ role_path }}/templates/houyi_plug.conf.j2"
+    dest: /home/mesasoft/sapp_run/houyi_etc/houyi_plug.conf
+  tags: template
 
+- name: "Template houyi_plug_static_arp.conf"
+  template:
+    src: "{{ role_path }}/templates/houyi_plug_static_arp.conf.j2"
+    dest: /home/mesasoft/sapp_run/houyi_etc/houyi_plug_static_arp.conf
+  tags: template
+  
+- name: "Template houyi.conf"
+  template:
+    src: "{{ role_path }}/templates/houyi.conf.j2"
+    dest: /opt/houyi/bin/houyi_etc/houyi.conf
+  tags: template
+  
+- name: "copy houyi.service to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/service/houyi.service"
+    dest: "/usr/lib/systemd/system"
+
+- name: "copy sapp.service to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/service/sapp.service"
+    dest: "/usr/lib/systemd/system"
+     
 - name: "enable houyi service"
   systemd:
     name: houyi
+    enabled: yes
+    daemon_reload: yes
+
+- name: "enable sapp service"
+  systemd:
+    name: sapp
     enabled: yes
     daemon_reload: yes

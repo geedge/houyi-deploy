@@ -1,0 +1,13 @@
+[all:vars]
+ansible_user=root
+houyi_rpm_file=houyi-1.0.0.26712da-1.el7.x86_64.rpm
+houyi_plug_rpm_file=houyi-plug-1.0.0.2a4c05f-1.el7.x86_64.rpm
+net_flood_rpm_file=net_flood-2.0.3.6ae51f2-1.el7.x86_64.rpm
+sapp_rpm_file=sapp-4.0.7.06731c3-1.el7.x86_64.rpm
+
+[sled-mcn0]
+192.168.40.133
+
+[tsg-all:children]
+sled-mcn0
+

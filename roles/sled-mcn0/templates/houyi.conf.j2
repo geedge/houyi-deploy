@@ -1,17 +1,17 @@
 [main]
 send_pkt_tool_path=./net_flood
+send_pkt_dev_name=tap_houyi
 log_path=./houyi_log/runtime.log
 log_level=20
-
 
 [maat]
 table_info=./houyi_etc/maat_tableinfo.conf
 #json, redis, local_file
-config_src_type=json
+config_src_type=redis
 json_cfg_file=./houyi_etc/maat_test.json
 inc_dir=./redis_dump/
 full_dir=./redis_dump/
-redis_server_ip=192.168.40.131
-redis_server_port=7002
-redis_index=0
+redis_server_ip={{houyi_global.houyi.redis_server_ip}}
+redis_server_port={{houyi_global.houyi.redis_server_port}}
+redis_index={{houyi_global.houyi.redis_index}}
 

@@ -1,0 +1,29 @@
+---
+- hosts: sled-mcn0
+  tasks:
+    - name: "uninstall sapp"
+      yum:
+        name: "sapp"
+        state: absent   
+
+    - name: "uninstall houyi"
+      yum:
+        name: "houyi"
+        state: absent           
+
+    - name: "uninstall houyi-plug"
+      yum:
+        name: "houyi-plug"
+        state: absent           
+
+    - name: "remove sapp"
+      file: 
+        path: /home/mesasoft/sapp_run/
+        state: absent
+        force: 1
+        
+    - name: "remove houyi" 
+      file: 
+        path: /opt/houyi/
+        state: absent
+        force: 1        
