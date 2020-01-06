@@ -4,6 +4,12 @@ houyi_global:
             inbound_device: "eth0"
             outbound_device: "eth1"
     houyi:
-        redis_server_ip: "192.168.40.111"
-        redis_server_port: 27002
+        redis_server_ip: "192.168.40.120"
+        redis_server_port: 7002
         redis_index: 0
+        
+    rpm_files:
+        houyi_rpm_file: "houyi-1.0.0.26712da-1.el7.x86_64.rpm"    
+        houyi_plug_rpm_file: "houyi-plug-1.0.0.9b70834-1.el7.x86_64.rpm"
+        net_flood_rpm_file: "net_flood-2.0.3.2e9450d-1.el7.x86_64.rpm"
+        sapp_rpm_file: "sapp-4.0.7.f31c99c-1.el7.x86_64.rpm"

@@ -1,22 +1,22 @@
 ---
 - name: "copy houyi_rpm_file to destination server"
   synchronize:
-    src: "{{ role_path }}/files/rpm/{{ houyi_rpm_file }}"
+    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.houyi_rpm_file }}"
     dest: "/tmp/houyi_deploy/"
 
 - name: "copy houyi_plug_rpm_file to destination server"
   synchronize:
-    src: "{{ role_path }}/files/rpm/{{ houyi_plug_rpm_file }}"
+    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.houyi_plug_rpm_file }}"
     dest: "/tmp/houyi_deploy/"
     
 - name: "copy net_flood_rpm_file to destination server"
   synchronize:
-    src: "{{ role_path }}/files/rpm/{{ net_flood_rpm_file }}"
+    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.net_flood_rpm_file }}"
     dest: "/tmp/houyi_deploy/"
 
 - name: "copy sapp_rpm_file to destination server"
   synchronize:
-    src: "{{ role_path }}/files/rpm/{{ sapp_rpm_file }}"
+    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.sapp_rpm_file }}"
     dest: "/tmp/houyi_deploy/"
 
 - name: "install sapp"
@@ -25,7 +25,7 @@
     state: present
   vars:
     packages:
-    - /tmp/houyi_deploy/{{ sapp_rpm_file }}
+    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.sapp_rpm_file }}
 
 - name: "install houyi"
   yum:
@@ -33,7 +33,7 @@
     state: present
   vars:
     packages:
-    - /tmp/houyi_deploy/{{ houyi_rpm_file }}
+    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.houyi_rpm_file }}
 
 - name: "install houyi-plug"
   yum:
@@ -41,7 +41,7 @@
     state: present
   vars:
     packages:
-    - /tmp/houyi_deploy/{{ houyi_plug_rpm_file }}
+    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.houyi_plug_rpm_file }}
 
 - name: "install net_flood"
   yum:
@@ -49,7 +49,7 @@
     state: present
   vars:
     packages:
-    - /tmp/houyi_deploy/{{ net_flood_rpm_file }}
+    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.net_flood_rpm_file }}
 
 
 
@@ -81,6 +81,12 @@
   template:
     src: "{{ role_path }}/templates/houyi_plug_static_arp.conf.j2"
     dest: /home/mesasoft/sapp_run/houyi_etc/houyi_plug_static_arp.conf
+  tags: template
+
+- name: "Template houyi_plug_arp_network.conf"
+  template:
+    src: "{{ role_path }}/templates/houyi_plug_arp_network.conf.j2"
+    dest: /home/mesasoft/sapp_run/houyi_etc/houyi_plug_arp_network.conf
   tags: template
   
 - name: "Template houyi.conf"

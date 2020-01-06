@@ -1,6 +1,16 @@
 ---
 - hosts: sled-mcn0
   tasks:
+    - name: "stop sapp service"
+      service:
+        name: sapp
+        state: stopped
+
+    - name: "stop houyi service"
+      service:
+        name: houyi
+        state: stopped
+      
     - name: "uninstall sapp"
       yum:
         name: "sapp"
@@ -16,14 +26,25 @@
         name: "houyi-plug"
         state: absent           
 
+    - name: "uninstall net_flood"
+      yum:
+        name: "net_flood"
+        state: absent
+        
     - name: "remove sapp"
       file: 
         path: /home/mesasoft/sapp_run/
         state: absent
         force: 1
-        
-    - name: "remove houyi" 
+
+    - name: "remove sapp service"
       file: 
-        path: /opt/houyi/
+        path: /usr/lib/systemd/system/sapp.service
+        state: absent
+        force: 1
+        
+    - name: "remove houyi service" 
+      file: 
+        path: /usr/lib/systemd/system/houyi.service
         state: absent
         force: 1        

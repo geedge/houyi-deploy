@@ -1,0 +1,8 @@
+#arp查询的源ip不能随意写, 因为可能不通过sapp, 必须要保证两端ip段不一致
+#或者是写个肯定不存在的sip和smac, arp回复时也能过sapp.
+
+#dir  network mask-bit-num mac-addr
+#dir: 0:C2I,  1:I2C
+#example:
+0   192.168.10.0	24 46:9d:8e:37:53:11
+1   192.168.10.128	24 46:9d:8e:37:53:22
