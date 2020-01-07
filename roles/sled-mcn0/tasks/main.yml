@@ -51,12 +51,16 @@
     packages:
     - /tmp/houyi_deploy/{{ houyi_global.rpm_files.net_flood_rpm_file }}
 
-
-
 - name: "Template the sapp.toml"
   template:
     src: "{{ role_path }}/templates/sapp.toml.j2"
     dest: /home/mesasoft/sapp_run/etc/sapp.toml
+  tags: template
+
+- name: "Template the send_raw_pkt.conf"
+  template:
+    src: "{{ role_path }}/templates/send_raw_pkt.conf.j2"
+    dest: /home/mesasoft/sapp_run/etc/send_raw_pkt.conf
   tags: template
 
 - name: "Template the conflist.inf"

@@ -37,14 +37,4 @@
         state: absent
         force: 1
 
-    - name: "remove sapp service"
-      file: 
-        path: /usr/lib/systemd/system/sapp.service
-        state: absent
-        force: 1
-        
-    - name: "remove houyi service" 
-      file: 
-        path: /usr/lib/systemd/system/houyi.service
-        state: absent
-        force: 1        
+      
