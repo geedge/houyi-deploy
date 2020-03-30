@@ -14,19 +14,32 @@
     src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.net_flood_rpm_file }}"
     dest: "/tmp/houyi_deploy/"
 
-- name: "copy sapp_rpm_file to destination server"
+- name: "copy houyi_common_tools_rpm_file to destination server"
   synchronize:
-    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.sapp_rpm_file }}"
+    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.houyi_common_tools_rpm_file }}"
     dest: "/tmp/houyi_deploy/"
+    
+#- name: "copy sapp_rpm_file to destination server"
+#  synchronize:
+#    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.sapp_rpm_file }}"
+#    dest: "/tmp/houyi_deploy/"
 
-- name: "install sapp"
+#- name: "install sapp"
+#  yum:
+#    name: "{{ packages }}"
+#    state: present
+#  vars:
+#    packages:
+#    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.sapp_rpm_file }}
+
+- name: "install houyi-common-tools"
   yum:
     name: "{{ packages }}"
     state: present
   vars:
     packages:
-    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.sapp_rpm_file }}
-
+    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.houyi_common_tools_rpm_file }}
+    
 - name: "install houyi"
   yum:
     name: "{{ packages }}"
@@ -74,8 +87,14 @@
     src: "{{ role_path }}/templates/houyi.inf.j2"
     dest: /home/mesasoft/sapp_run/plug/business/houyi/houyi.inf
   tags: template
+
+- name: "Template the houyi_send_log.conf"
+  template:
+    src: "{{ role_path }}/templates/houyi_send_log.conf.j2"
+    dest: /opt/houyi/bin/houyi_etc/houyi_send_log.conf
+  tags: template
   
-- name: "Template the houyi.inf"
+- name: "Template the houyi_plug.conf"
   template:
     src: "{{ role_path }}/templates/houyi_plug.conf.j2"
     dest: /home/mesasoft/sapp_run/houyi_etc/houyi_plug.conf

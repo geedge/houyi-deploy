@@ -5,22 +5,29 @@
       service:
         name: sapp
         state: stopped
-
+      ignore_errors: yes
+      
     - name: "stop houyi service"
       service:
         name: houyi
         state: stopped
+      ignore_errors: yes
       
-    - name: "uninstall sapp"
-      yum:
-        name: "sapp"
-        state: absent   
+#    - name: "uninstall sapp"
+#      yum:
+#        name: "sapp"
+#        state: absent   
 
     - name: "uninstall houyi"
       yum:
         name: "houyi"
         state: absent           
 
+    - name: "uninstall houyi-common-tools"
+      yum:
+        name: "houyi-common-tools"
+        state: absent   
+        
     - name: "uninstall houyi-plug"
       yum:
         name: "houyi-plug"
@@ -30,11 +37,4 @@
       yum:
         name: "net_flood"
         state: absent
-        
-    - name: "remove sapp"
-      file: 
-        path: /home/mesasoft/sapp_run/
-        state: absent
-        force: 1
-
       
