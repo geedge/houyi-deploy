@@ -4,7 +4,7 @@
     src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.houyi_rpm_file }}"
     dest: "/tmp/houyi_deploy/"
 
-- name: "copy houyi_plug_rpm_file to destination server"
+- name: "copy houyi_sapp_plug_rpm_file to destination server"
   synchronize:
     src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.houyi_plug_rpm_file }}"
     dest: "/tmp/houyi_deploy/"

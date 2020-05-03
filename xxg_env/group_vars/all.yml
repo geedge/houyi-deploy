@@ -4,6 +4,8 @@ houyi_global:
             inbound_route_dir: 1
             internal_device: "eth5"
             external_device: "eth4"
+        packet_io_depolyment:
+            mode: "mirror"
             
     houyi:
         redis_server_ip: "192.168.40.131"
@@ -11,11 +13,11 @@ houyi_global:
         redis_index: 0
         
     rpm_files:
-        houyi_rpm_file: "houyi-1.2.0.78327cd-1.el7.x86_64.rpm"    
-        houyi_common_tools_rpm_file: "houyi-common-tools-1.0.1.e757dda-1.el7.x86_64.rpm"
-        houyi_plug_rpm_file: "houyi-plug-1.2.0.203ee5c-1.el7.x86_64.rpm"
-        net_flood_rpm_file: "net_flood-2.1.0.27094d7-1.el7.x86_64.rpm"
-        sapp_rpm_file: "sapp-4.0.8.7010e12-1.el7.x86_64.rpm"
+        houyi_rpm_file: "houyi-1.2.0.647fcd4-1.el7.x86_64.rpm"    
+        houyi_common_tools_rpm_file: "houyi-common-tools-1.0.0.ed74540-1.el7.x86_64.rpm"
+        houyi_plug_rpm_file: "houyi-plug-1.1.8.7051ab2-1.el7.x86_64.rpm"
+        net_flood_rpm_file: "net_flood-2.0.3.8d3d59b-1.el7.x86_64.rpm"
+        sapp_rpm_file: "sapp-4.0.8.c43dbc1-1.el7.x86_64.rpm"
         
     kafka:
         brokers: "192.168.40.224:9092"
