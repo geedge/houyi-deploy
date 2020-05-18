@@ -18,20 +18,25 @@
   synchronize:
     src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.houyi_common_tools_rpm_file }}"
     dest: "/tmp/houyi_deploy/"
+
+- name: "copy wire_graft_rpm_file to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.wire_graft_rpm_file }}"
+    dest: "/tmp/houyi_deploy/"
     
-#- name: "copy sapp_rpm_file to destination server"
-#  synchronize:
-#    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.sapp_rpm_file }}"
-#    dest: "/tmp/houyi_deploy/"
+- name: "copy sapp_rpm_file to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/rpm/{{ houyi_global.rpm_files.sapp_rpm_file }}"
+    dest: "/tmp/houyi_deploy/"
 
-#- name: "install sapp"
-#  yum:
-#    name: "{{ packages }}"
-#    state: present
-#  vars:
-#    packages:
-#    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.sapp_rpm_file }}
-
+- name: "install sapp"
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.sapp_rpm_file }}
+   
 - name: "install houyi-common-tools"
   yum:
     name: "{{ packages }}"
@@ -64,6 +69,15 @@
     packages:
     - /tmp/houyi_deploy/{{ houyi_global.rpm_files.net_flood_rpm_file }}
 
+- name: "install wire_graft"
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - /tmp/houyi_deploy/{{ houyi_global.rpm_files.wire_graft_rpm_file }}
+
+
 - name: "Template the sapp.toml"
   template:
     src: "{{ role_path }}/templates/sapp.toml.j2"
@@ -92,6 +106,12 @@
   template:
     src: "{{ role_path }}/templates/houyi_send_log.conf.j2"
     dest: /opt/houyi/bin/houyi_etc/houyi_send_log.conf
+  tags: template
+
+- name: "Template the houyi_plug_send_log.conf"
+  template:
+    src: "{{ role_path }}/templates/houyi_plug_send_log.conf.j2"
+    dest:  /home/mesasoft/sapp_run/houyi_etc/houyi_send_log.conf
   tags: template
   
 - name: "Template the houyi_plug.conf"

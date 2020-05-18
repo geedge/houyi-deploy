@@ -10,7 +10,7 @@ fs2_remote_server_port=8152
 #因双网卡透明模式下, DNS server安装在internal, 很多时候为了复用方便, nginx也装在了同一台服务器,
 #但本来cc模式是要send to external的, 此处加一个配置文件, 便于在不同环境测试.
 #正式环境下, 默认肯定是ItoE的
-default_send_dir=1
+default_send_dir=E2I
 
 [maat]
 table_info=./houyi_etc/maat_tableinfo.conf

@@ -1,0 +1,27 @@
+houyi_global:
+    sapp:
+        install: false
+        packet_io:
+            inbound_route_dir: 1
+            internal_device: "enp175s0f0"
+            external_device: "enp175s0f1"
+        packet_io_depolyment:
+            mode: "mirror"
+            
+    houyi:
+        redis_server_ip: "192.168.70.125"
+        redis_server_port: 7002
+        redis_index: 0
+        
+    rpm_files:
+        houyi_rpm_file: "houyi-1.2.0.647fcd4-1.el7.x86_64.rpm"    
+        houyi_common_tools_rpm_file: "houyi-common-tools-1.0.0.ed74540-1.el7.x86_64.rpm"
+        houyi_plug_rpm_file: "houyi-plug-1.2.0.281c7ec-1.el7.x86_64.rpm"
+        net_flood_rpm_file: "net_flood-2.0.3.8d3d59b-1.el7.x86_64.rpm"
+        sapp_rpm_file: "sapp-4.0.8.c43dbc1-1.el7.x86_64.rpm"
+        wire_graft_rpm_file: "wire-graft-1.0.0.d757e02-1.el7.x86_64.rpm"
+        
+    kafka:
+        brokers: "192.168.70.128:9092"
+        interval: 30
+        topic_name: "ACTIVE-DEFENCE-EVENT-LOG"

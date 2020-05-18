@@ -1,0 +1,9 @@
+[all:vars]
+ansible_user=root
+
+[sled-mcn0]
+192.168.70.203
+
+[tsg-all:children]
+sled-mcn0
+
