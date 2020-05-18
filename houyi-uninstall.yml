@@ -12,11 +12,6 @@
         name: houyi
         state: stopped
       ignore_errors: yes
-      
-    - name: "uninstall sapp"
-      yum:
-        name: "sapp"
-        state: absent   
 
     - name: "uninstall houyi"
       yum:
@@ -32,14 +27,18 @@
       yum:
         name: "houyi-plug"
         state: absent           
-
-    - name: "uninstall net_flood"
-      yum:
-        name: "net_flood"
-        state: absent
         
     - name: "uninstall wire_graft"
       yum:
         name: "wire_graft"
-        state: absent        
-      
+        state: absent       
+
+    - name: "uninstall sapp"
+      yum:
+        name: "sapp"
+        state: absent   
+        
+    - name: "uninstall net_flood"
+      yum:
+        name: "net_flood"
+        state: absent      
