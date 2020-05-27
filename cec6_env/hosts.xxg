@@ -2,7 +2,7 @@
 ansible_user=root
 
 [sled-mcn0]
-192.168.70.203
+192.168.70.113
 
 [tsg-all:children]
 sled-mcn0

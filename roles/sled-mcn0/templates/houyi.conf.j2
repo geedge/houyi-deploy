@@ -4,6 +4,19 @@ send_pkt_dev_name=tap_houyi
 log_path=./houyi_log/runtime.log
 log_level=20
 
+#为了方便, 容错处理, 关于方向的定义, 以下表述全是一个意思:
+#由内向外: C2I, CtoI, CTOI, ItoE, I2E,
+#由外向内: I2C, ItoC, ITOC, EtoI, E2I,
+[flood]
+#此处加一个配置文件, 便于在不同环境测试.
+#正式环境下, 默认肯定是ItoE的
+default_send_dir=I2E
+
+[reflection]
+#此处加一个配置文件, 便于在不同环境测试.
+#正式环境下, 默认肯定是ItoE的
+default_send_dir=I2E
+
 [maat]
 table_info=./houyi_etc/maat_tableinfo.conf
 #json, redis, local_file

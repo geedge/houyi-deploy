@@ -137,6 +137,17 @@
     src: "{{ role_path }}/templates/houyi.conf.j2"
     dest: /opt/houyi/bin/houyi_etc/houyi.conf
   tags: template
+
+- name: "Creates /opt/tsg/etc directory"
+  file:
+    path: /opt/tsg/etc
+    state: directory
+
+- name: "Template tsg_sn.json"
+  template:
+    src: "{{ role_path }}/templates/tsg_sn.json.j2"
+    dest: /opt/tsg/etc/tsg_sn.json
+  tags: template
   
 - name: "copy houyi.service to destination server"
   synchronize:
