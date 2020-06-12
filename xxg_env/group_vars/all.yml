@@ -1,6 +1,6 @@
 houyi_global:
     sapp:
-        install: true
+        install: false
         packet_io:
             inbound_route_dir: 1
             internal_device: "eth5"
@@ -14,12 +14,12 @@ houyi_global:
         redis_index: 0
         
     rpm_files:
-        houyi_rpm_file: "houyi-1.3.3.74e3c7f-1.el7.x86_64.rpm"    
-        houyi_common_tools_rpm_file: "houyi-common-tools-1.0.3.d76bd15-1.el7.x86_64.rpm"
-        houyi_plug_rpm_file: "houyi-plug-1.3.0.99bb9d9-1.el7.x86_64.rpm"
-        net_flood_rpm_file: "net_flood-2.1.4.0ffe326-1.el7.x86_64.rpm"
-        sapp_rpm_file: "sapp-4.0.12.f8435d8-x86_64...rpm"
-        wire_graft_rpm_file: "wire-graft-1.0.2.b2ec3a2-1.el7.x86_64.rpm"
+        houyi_rpm_file: "houyi-1.3.4.38c2e01-1.el7.x86_64.rpm"    
+        houyi_common_tools_rpm_file: "houyi-common-tools-1.0.4.863f9b6-1.el7.x86_64.rpm"
+        houyi_plug_rpm_file: "houyi-plug-1.3.1.7b597cb-1.el7.x86_64.rpm"
+        net_flood_rpm_file: "net_flood-2.1.5.aac7d26-1.el7.x86_64.rpm"
+        sapp_rpm_file: "sapp-4.0.14.91cbc1b-x86_64...rpm"
+        wire_graft_rpm_file: "wire-graft-1.0.3.162dae3-1.el7.x86_64.rpm"
         
     kafka:
         brokers: "192.168.40.224:9092"
@@ -28,3 +28,9 @@ houyi_global:
         
     log:
         device_id: "1"
+        
+    traffic_control:
+        enabled: 1
+        redis_server_ip: "192.168.40.120"
+        redis_server_port: 7003
+        redis_index: 6

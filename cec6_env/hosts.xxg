@@ -1,9 +1,10 @@
 [all:vars]
 ansible_user=root
+install_sapp=true
 
-[sled-mcn0]
+[active_defence]
 192.168.70.113
 
 [tsg-all:children]
-sled-mcn0
+active_defence
 

@@ -1,11 +1,12 @@
 ---
-- hosts: sled-mcn0
+- hosts: active_defence
   tasks:
     - name: "stop sapp service"
       service:
         name: sapp
         state: stopped
       ignore_errors: yes
+      when: install_sapp | bool   
       
     - name: "stop houyi service"
       service:
@@ -28,17 +29,19 @@
         name: "houyi-plug"
         state: absent           
         
-    - name: "uninstall wire_graft"
+    - name: "uninstall wire-graft"
       yum:
-        name: "wire_graft"
-        state: absent       
+        name: "wire-graft"
+        state: absent        
 
     - name: "uninstall sapp"
       yum:
         name: "sapp"
-        state: absent   
+        state: absent  
+      when: install_sapp | bool   
         
     - name: "uninstall net_flood"
       yum:
         name: "net_flood"
         state: absent      
+        

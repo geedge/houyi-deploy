@@ -10,10 +10,13 @@ instance_name = "sapp_v4.0"
 
 [CPU]
 worker_threads=2
+send_only_threads_max=8
+
 ### note, bind_mask, if you do not want to bind thread to special CPU core, keep it empty as []
 bind_mask=[]
 
 [PACKET_IO]
+[packet_io.feature]   
 ### note, used to represent inbound or outbound direction value,
 ### because it comes from other device, so it needs to be specified manually,
 ### if inbound_route_dir=1, then outbound_route_dir=0, vice versa,
@@ -22,7 +25,8 @@ inbound_route_dir={{houyi_global.sapp.packet_io.inbound_route_dir}}
 
 ### note, BSD_packet_filter, if you do not want to set any filter rule, keep it empty as ""
 BSD_packet_filter=""
-   
+
+
 ### note, depolyment.mode options: [mirror, inline, transparent]
     [packet_io.depolyment]
     mode={{houyi_global.sapp.packet_io_depolyment.mode}}

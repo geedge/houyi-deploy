@@ -1,5 +1,5 @@
 ---
-- hosts: sled-mcn0
+- hosts: active_defence
   roles:
-    - sled-mcn0
+    - active_defence
 
