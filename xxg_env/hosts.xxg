@@ -1,9 +1,9 @@
 [all:vars]
 ansible_user=root
-install_sapp=true
+install_sapp=false
 
 [active_defence]
-192.168.40.133
+192.168.40.85
 
 [tsg-all:children]
 active_defence

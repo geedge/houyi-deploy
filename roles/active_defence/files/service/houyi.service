@@ -1,0 +1,12 @@
+[Unit]
+Description=houyi service
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/opt/houyi/bin
+ExecStart=/opt/houyi/bin/houyi
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

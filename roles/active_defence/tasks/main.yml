@@ -158,10 +158,10 @@
     dest: /opt/houyi/bin/houyi_etc/maat_test.json
   tags: template
   
-#- name: "copy houyi.service to destination server"
-#  synchronize:
-#    src: "{{ role_path }}/files/service/houyi.service"
-#    dest: "/usr/lib/systemd/system"
+- name: "copy houyi.service to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/service/houyi.service"
+    dest: "/usr/lib/systemd/system"
 
 #- name: "copy sapp.service to destination server"
 #  synchronize:
