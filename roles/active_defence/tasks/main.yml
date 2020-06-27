@@ -168,7 +168,13 @@
 #    src: "{{ role_path }}/files/service/sapp.service"
 #    dest: "/usr/lib/systemd/system"
 #  when: install_sapp | bool      
-     
+
+- name: "use same maat_test.json"
+  shell: ln -sf /opt/houyi/bin/houyi_etc/maat_test.json /home/mesasoft/sapp_run/houyi_etc/
+  args:
+    executable: /bin/bash
+  tags: shell
+    
 - name: "enable houyi service"
   systemd:
     name: houyi
@@ -180,3 +186,17 @@
     name: sapp
     enabled: yes
     daemon_reload: yes
+
+- name: "Copy test tools tcp_syn_flood"
+  copy:
+    src: "{{ role_path }}/files/tools/tcp_syn_flood"
+    dest: "/opt/houyi/bin"
+    mode: '0755'
+  tags: tools
+
+- name: "Copy test tools udp_dns_flood"
+  copy:
+    src: "{{ role_path }}/files/tools/udp_dns_flood"
+    dest: "/opt/houyi/bin"
+    mode: '0755'
+  tags: tools

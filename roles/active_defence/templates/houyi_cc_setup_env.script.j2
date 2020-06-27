@@ -1,16 +1,27 @@
-ifconfig tun_cc 192.168.1.254/24 up
-ip rule del table 200
-ip rule add from 192.168.1.254/32 table 200
-ip route add default via 192.168.1.253 table 200
+ip tuntap add dev tun_cc0 mode tun
+ip tuntap add dev tun_cc1 mode tun
+ip tuntap add dev tun_cc2 mode tun
+ifconfig tun_cc0 192.168.1.254/24 up
+ifconfig tun_cc1 192.168.2.254/24 up
+ifconfig tun_cc2 192.168.3.254/24 up
+ip rule del table 1001
+ip rule del table 1002
+ip rule del table 1003
+ip rule add from 192.168.1.254/32 table 1001
+ip rule add from 192.168.2.254/32 table 1002
+ip rule add from 192.168.3.254/32 table 1003
+ip route add default via 192.168.1.253 table 1001
+ip route add default via 192.168.2.253 table 1002
+ip route add default via 192.168.3.253 table 1003
+echo "500000" > /proc/sys/fs/file-max
 echo "1" >  /proc/sys/net/ipv4/tcp_syncookies
 echo "2" > /proc/sys/net/ipv4/tcp_syn_retries
 echo "1" >  /proc/sys/net/ipv4/tcp_tw_reuse
 echo "1" > /proc/sys/net/ipv4/tcp_tw_recycle
 echo "10" > /proc/sys/net/ipv4/tcp_fin_timeout
-echo "0" > /proc/sys/net/ipv4/tcp_timestamps
 echo "1025  65500" > /proc/sys/net/ipv4/ip_local_port_range
 echo "262144" > /proc/sys/net/ipv4/tcp_max_syn_backlog
 echo "30" > /proc/sys/net/ipv4/tcp_keepalive_time
 echo "3" > /proc/sys/net/ipv4/tcp_keepalive_probes
-echo "5" > /proc/sys/net/ipv4/tcp_keepalive_intvl
-sysctl -p
+echo "3" > /proc/sys/net/ipv4/tcp_keepalive_intvl
+systemctl start irqbalance.service
