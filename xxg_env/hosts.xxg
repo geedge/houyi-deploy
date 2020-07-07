@@ -3,10 +3,7 @@ ansible_user=root
 install_sapp=false
 
 [active_defence]
-192.168.40.84
-192.168.40.85
-192.168.40.86
-192.168.40.87
+192.168.40.137
 
 [tsg-all:children]
 active_defence
